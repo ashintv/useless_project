@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Procrastination Quiz</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    }
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    .quiz-container {
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+      max-width: 800px;
+      margin: 30px auto;
+    }
+    .score-section, .dashboard, .chart-section {
+      display: none;
+      text-align: center;
+    }
+    .btn-custom {
+      background-color: #f94144;
+      border: none;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 20px;
+      transition: background 0.3s;
+    }
+    .btn-custom:hover {
+      background-color: #f3722c;
+    }
+    .quiz-question {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Procrastination Quiz</a>
+  </div>
+</nav>
+
+<!-- Quiz Container -->
+<div class="container quiz-container mt-5 pt-5">
+  <h2 class="text-center mb-4">Are You a Procrastinator?</h2>
+  <p class="text-center text-muted">Answer these questions or… just leave them blank. The higher your score, the more you procrastinate!</p>
+  
+  <form id="quizForm">
+    <!-- 10 Questions -->
+    <div class="quiz-question">
+      <h5>1. Do you often put off tasks until the last minute?</h5>
+      <input type="radio" name="question1" value="1"> Rarely<br>
+      <input type="radio" name="question1" value="3"> Sometimes<br>
+      <input type="radio" name="question1" value="5"> Often<br>
+      <input type="radio" name="question1" value="7"> Always<br>
+    </div>
+    
+    <div class="quiz-question">
+      <h5>2. How often do you miss deadlines?</h5>
+      <input type="radio" name="question2" value="1"> Rarely<br>
+      <input type="radio" name="question2" value="3"> Sometimes<br>
+      <input type="radio" name="question2" value="5"> Often<br>
+      <input type="radio" name="question2" value="7"> Always<br>
+    </div>
+
+    <div class="quiz-question">
+      <h5>3. Do you find it hard to start new tasks?</h5>
+      <input type="radio" name="question3" value="1"> Rarely<br>
+      <input type="radio" name="question3" value="3"> Sometimes<br>
+      <input type="radio" name="question3" value="5"> Often<br>
+      <input type="radio" name="question3" value="7"> Always<br>
+    </div>
+
+    <div class="quiz-question">
+      <h5>4. Do you prioritize less important tasks over critical ones?</h5>
+      <input type="radio" name="question4" value="1"> Rarely<br>
+      <input type="radio" name="question4" value="3"> Sometimes<br>
+      <input type="radio" name="question4" value="5"> Often<br>
+      <input type="radio" name="question4" value="7"> Always<br>
+    </div>
+
+    <div class="quiz-question">
+      <h5>5. Do you get distracted easily while working?</h5>
+      <input type="radio" name="question5" value="1"> Rarely<br>
+      <input type="radio" name="question5" value="3"> Sometimes<br>
+      <input type="radio" name="question5" value="5"> Often<br>
+      <input type="radio" name="question5" value="7"> Always<br>
+    </div>
+
+    <div class="quiz-question">
+      <h5>6. How often do you delay tasks that you find challenging?</h5>
+      <input type="radio" name="question6" value="1"> Rarely<br>
+      <input type="radio" name="question6" value="3"> Sometimes<br>
+      <input type="radio" name="question6" value="5"> Often<br>
+      <input type="radio" name="question6" value="7"> Always<br>
+    </div>
+
+    <div class="quiz-question">
+      <h5>7. Do you feel overwhelmed by your to-do list?</h5>
+      <input type="radio" name="question7" value="1"> Rarely<br>
+      <input type="radio" name="question7" value="3"> Sometimes<br>
+      <input type="radio" name="question7" value="5"> Often<br>
+      <input type="radio" name="question7" value="7"> Always<br>
+    </div>
+
+    <div class="quiz-question">
+      <h5>8. Do you prefer doing enjoyable tasks over essential ones?</h5>
+      <input type="radio" name="question8" value="1"> Rarely<br>
+      <input type="radio" name="question8" value="3"> Sometimes<br>
+      <input type="radio" name="question8" value="5"> Often<br>
+      <input type="radio" name="question8" value="7"> Always<br>
+    </div>
+
+    <div class="quiz-question">
+      <h5>9. Do you procrastinate on tasks even if they have strict deadlines?</h5>
+      <input type="radio" name="question9" value="1"> Rarely<br>
+      <input type="radio" name="question9" value="3"> Sometimes<br>
+      <input type="radio" name="question9" value="5"> Often<br>
+      <input type="radio" name="question9" value="7"> Always<br>
+    </div>
+
+    <div class="quiz-question">
+      <h5>10. Do you feel stressed because of putting off tasks?</h5>
+      <input type="radio" name="question10" value="1"> Rarely<br>
+      <input type="radio" name="question10" value="3"> Sometimes<br>
+      <input type="radio" name="question10" value="5"> Often<br>
+      <input type="radio" name="question10" value="7"> Always<br>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="text-center">
+      <button type="button" class="btn btn-custom" onclick="calculateScore()">Submit Quiz</button>
+    </div>
+  </form>
+
+  <!-- Score and Dashboard Section -->
+  <div class="score-section mt-4">
+    <h3>Your Procrastination Score: <span id="score"></span></h3>
+    <p class="text-muted">Higher score means you're a true procrastinator!</p>
+  </div>
+
+  <div class="dashboard mt-4">
+    <h4>Your Ranking: <span id="ranking"></span></h4>
+  </div>
+
+  <!-- Chart Section -->
+  <div class="chart-section mt-4">
+    <h5>Your Procrastination Level Overview</h5>
+    <canvas id="procrastinationChart" width="400" height="200"></canvas>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="text-center text-white bg-dark py-3 mt-5">
+  <p>&copy; 2024 Procrastination Quiz. All rights reserved.</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Calculate score based on user's answers
+  function calculateScore() {
+    const quizForm = document.getElementById('quizForm');
+    const formData = new FormData(quizForm);
+    let score = 0;
+
+    // Calculate score
+    for (let [name, value] of formData) {
+      score += parseInt(value) || 0;
+    }
+
+    // Display score
+    document.getElementById('score').innerText = score;
+    document.querySelector('.score-section').style.display = 'block';
+
+    // Ranking based on score
+    let ranking;
+    if (score >= 60) {
+      ranking = "Master Procrastinator";
+    } else if (score >= 40) {
+      ranking = "Procrastination Enthusiast";
+    } else if (score >= 20) {
+      ranking = "Occasional Procrastinator";
+    } else {
+      ranking = "Productivity Pro";
+    }
+
+    // Display ranking in dashboard
+    document.getElementById('ranking').innerText = ranking;
+    document.querySelector('.dashboard').style.display = 'block';
+
+    // Display chart with score data
+    displayChart(score);
+  }
+
+  // Display the chart
+  function displayChart(score) {
+    document.querySelector('.chart-section').style.display = 'block';
+    const ctx = document.getElementById('procrastinationChart').getContext('2d');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ["Productivity Pro", "Occasional Procrastinator", "Procrastination Enthusiast", "Master Procrastinator"],
+        datasets: [{
+          label: 'Procrastination Score',
+          data: [
+            score < 20 ? score : 0, // Productivity Pro
+            score >= 20 && score < 40 ? score : 0, // Occasional Procrastinator
+            score >= 40 && score < 60 ? score : 0, // Procrastination Enthusiast
+            score >= 60 ? score : 0 // Master Procrastinator
+          ],
+          backgroundColor: ['#4CAF50', '#FFC107', '#FF9800', '#F44336'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 70
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      }
+    });
+  }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8;
+    color: #333;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+h2 {
+    color: #4CAF50;
+}
+
+main {
+    padding: 2rem;
+}
+
+.intro, .resources, .fun-facts {
+    margin-bottom: 2rem;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.resources ul, .fun-facts ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.resources li, .fun-facts li {
+    margin-bottom: 1rem;
+}
+
+.resources a {
+    text-decoration: none;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.resources a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
